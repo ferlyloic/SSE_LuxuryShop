@@ -29,9 +29,6 @@ class BestellungController {
         }
 
         try {
-            if(bestellung.bestellungsstatus == null){
-                bestellung.bestellungsstatus = Bestellungsstatus.Unbezahlt
-            }
             bestellungService.save(bestellung)
         } catch (ValidationException e) {
             respond bestellung.errors, view:'create'

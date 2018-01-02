@@ -14,11 +14,11 @@ class BestellungServiceSpec extends Specification {
 
     private Long setupData() {
         // TODO: Populate valid domain instances and return a valid ID
-        //new Bestellung(...).save(flush: true, failOnError: true)
-        //new Bestellung(...).save(flush: true, failOnError: true)
-        //Bestellung bestellung = new Bestellung(...).save(flush: true, failOnError: true)
-        //new Bestellung(...).save(flush: true, failOnError: true)
-        //new Bestellung(...).save(flush: true, failOnError: true)
+        //new Bestellung2(...).save(flush: true, failOnError: true)
+        //new Bestellung2(...).save(flush: true, failOnError: true)
+        //Bestellung2 bestellung = new Bestellung2(...).save(flush: true, failOnError: true)
+        //new Bestellung2(...).save(flush: true, failOnError: true)
+        //new Bestellung2(...).save(flush: true, failOnError: true)
         assert false, "TODO: Provide a setupData() implementation for this generated test suite"
         //bestellung.id
     }
@@ -34,7 +34,7 @@ class BestellungServiceSpec extends Specification {
         setupData()
 
         when:
-        List<Bestellung> bestellungList = bestellungService.list(max: 2, offset: 2)
+        List<Bestellung2> bestellungList = bestellungService.list(max: 2, offset: 2)
 
         then:
         bestellungList.size() == 2
@@ -65,7 +65,7 @@ class BestellungServiceSpec extends Specification {
     void "test save"() {
         when:
         assert false, "TODO: Provide a valid instance to save"
-        Bestellung bestellung = new Bestellung()
+        Bestellung2 bestellung = new Bestellung2()
         bestellungService.save(bestellung)
 
         then:

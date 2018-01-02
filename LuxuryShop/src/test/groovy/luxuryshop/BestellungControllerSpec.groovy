@@ -5,7 +5,7 @@ import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
 import spock.lang.*
 
-class BestellungControllerSpec extends Specification implements ControllerUnitTest<BestellungController>, DomainUnitTest<Bestellung> {
+class BestellungControllerSpec extends Specification implements ControllerUnitTest<BestellungController>, DomainUnitTest<Bestellung2> {
 
     def populateValidParams(params) {
         assert params != null
@@ -52,7 +52,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
     void "Test the save action correctly persists"() {
         given:
         controller.bestellungService = Mock(BestellungService) {
-            1 * save(_ as Bestellung)
+            1 * save(_ as Bestellung2)
         }
 
         when:"The save action is executed with a valid instance"
@@ -60,7 +60,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         populateValidParams(params)
-        def bestellung = new Bestellung(params)
+        def bestellung = new Bestellung2(params)
         bestellung.id = 1
 
         controller.save(bestellung)
@@ -73,7 +73,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
     void "Test the save action with an invalid instance"() {
         given:
         controller.bestellungService = Mock(BestellungService) {
-            1 * save(_ as Bestellung) >> { Bestellung bestellung ->
+            1 * save(_ as Bestellung2) >> { Bestellung2 bestellung ->
                 throw new ValidationException("Invalid instance", bestellung.errors)
             }
         }
@@ -81,7 +81,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def bestellung = new Bestellung()
+        def bestellung = new Bestellung2()
         controller.save(bestellung)
 
         then:"The create view is rendered again with the correct model"
@@ -105,14 +105,14 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
     void "Test the show action with a valid id"() {
         given:
         controller.bestellungService = Mock(BestellungService) {
-            1 * get(2) >> new Bestellung()
+            1 * get(2) >> new Bestellung2()
         }
 
         when:"A domain instance is passed to the show action"
         controller.show(2)
 
         then:"A model is populated containing the domain instance"
-        model.bestellung instanceof Bestellung
+        model.bestellung instanceof Bestellung2
     }
 
     void "Test the edit action with a null id"() {
@@ -131,14 +131,14 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
     void "Test the edit action with a valid id"() {
         given:
         controller.bestellungService = Mock(BestellungService) {
-            1 * get(2) >> new Bestellung()
+            1 * get(2) >> new Bestellung2()
         }
 
         when:"A domain instance is passed to the show action"
         controller.edit(2)
 
         then:"A model is populated containing the domain instance"
-        model.bestellung instanceof Bestellung
+        model.bestellung instanceof Bestellung2
     }
 
 
@@ -156,7 +156,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
     void "Test the update action correctly persists"() {
         given:
         controller.bestellungService = Mock(BestellungService) {
-            1 * save(_ as Bestellung)
+            1 * save(_ as Bestellung2)
         }
 
         when:"The save action is executed with a valid instance"
@@ -164,7 +164,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
         populateValidParams(params)
-        def bestellung = new Bestellung(params)
+        def bestellung = new Bestellung2(params)
         bestellung.id = 1
 
         controller.update(bestellung)
@@ -177,7 +177,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
     void "Test the update action with an invalid instance"() {
         given:
         controller.bestellungService = Mock(BestellungService) {
-            1 * save(_ as Bestellung) >> { Bestellung bestellung ->
+            1 * save(_ as Bestellung2) >> { Bestellung2 bestellung ->
                 throw new ValidationException("Invalid instance", bestellung.errors)
             }
         }
@@ -185,7 +185,7 @@ class BestellungControllerSpec extends Specification implements ControllerUnitTe
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
-        controller.update(new Bestellung())
+        controller.update(new Bestellung2())
 
         then:"The edit view is rendered again with the correct model"
         model.bestellung != null

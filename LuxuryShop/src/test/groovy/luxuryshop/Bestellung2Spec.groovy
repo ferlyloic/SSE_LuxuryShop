@@ -1,9 +1,9 @@
 package luxuryshop
 
-import grails.testing.web.controllers.ControllerUnitTest
+import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class IntitializerControllerSpec extends Specification implements ControllerUnitTest<IntitializerController> {
+class Bestellung2Spec extends Specification implements DomainUnitTest<Bestellung2> {
 
     def setup() {
     }

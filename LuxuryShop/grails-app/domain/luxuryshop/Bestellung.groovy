@@ -1,7 +1,7 @@
 package luxuryshop
 
 class Bestellung {
-    Produkt produkt
+    static hasOne = [produkt: Produkt]
     Integer menge
     BigDecimal getGesamtpreis(){
         produkt.getPreis()* menge
@@ -18,4 +18,5 @@ class Bestellung {
         bestellungsstatus defaulValue: Bestellungsstatus.Unbezahlt
     }
     static transients = ['gesamtpreis']
+
 }
