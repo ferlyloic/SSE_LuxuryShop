@@ -1,12 +1,12 @@
-package luxuryshop
+package luxuryshop2
 
 class Bestellung {
-    Produkt produkt
     Integer menge
     BigDecimal getGesamtpreis(){
         produkt.getPreis()* menge
     }
     Bestellungsstatus bestellungsstatus
+    Produkt produkt
 
     static constraints = {
         produkt(nullable: false)
@@ -15,8 +15,9 @@ class Bestellung {
         gesamtpreis display: true
     }
     static mapping = {
-        bestellungsstatus defaulValue: Bestellungsstatus.Unbezahlt
+       bestellungsstatus defaultValue: Bestellungsstatus.Unbezahlt
     }
     static transients = ['gesamtpreis']
 
 }
+

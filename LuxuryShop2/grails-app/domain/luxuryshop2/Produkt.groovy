@@ -1,4 +1,4 @@
-package luxuryshop
+package luxuryshop2
 
 class Produkt {
 
@@ -14,12 +14,15 @@ class Produkt {
         produktbeschreibung(nullable: true, blank: true)
     }
     static mapping = {
+        //WARNING: aufpassen bei der Nutzung von defaultValue es kann zu Probleme mit der Hibernate kommen..
         waehrung defaultValue: Waehrung.Euro
-        produktbeschreibung defaultValue: ""
+        //produktbeschreibung defaultValue: 'keine Beschreibung vorhanden!!'
 
     }
     @Override
     public String toString(){
-        "$produktname ,$preis $waehrung: $produktbeschreibung"
+        """$produktname
+$preis $waehrung:
+$produktbeschreibung"""
     }
 }
