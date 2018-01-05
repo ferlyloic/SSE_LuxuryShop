@@ -22,6 +22,7 @@ class ProduktInterceptor {
 
         // read line by line
         String[] record = null;
+        reader.readNext()
 
         while ((record = reader.readNext()) != null) {
             println(Arrays.asList(record))
