@@ -15,7 +15,7 @@ class ProduktInterceptor {
 
     boolean before() {
 
-        CSVReader reader = new CSVReader(new FileReader("files/ProductList.csv"));
+        CSVReader reader = new CSVReader(new FileReader("grails-app/files/ProductList.csv"));
     //    CSVReader reader = new CSVReader(new FileReader("/Users/jacquelinefranssen/Desktop/SSE_LuxuryShop/SSE_LuxuryShop/LuxuryShop2/grails-app/files/ProductList.csv"), ',');
 
         List<Produkt> produktList = new ArrayList<Produkt>();
@@ -24,15 +24,11 @@ class ProduktInterceptor {
         String[] record = null;
 
         while ((record = reader.readNext()) != null) {
-            Produkt produkt = new Produkt();
-            produkt.name(record[0]);
-            produkt.preis(record[1]);
-            produkt.waehrung(Waehrung.Euro);
-            produkt.produktbeschreibung(record[3]);
-            produktList.add(produkt);
+            println(Arrays.asList(record))
+            Produkt produkt = new Produkt(produktname: record[0],preis: Double.parseDouble(record[1]), waehrung: Waehrung.Euro, produktbeschreibung:  record[2]);
+            println produkt
+            produktService.save(produkt)
         }
-
-        System.out.println(produktList);
 
         reader.close();
     }
