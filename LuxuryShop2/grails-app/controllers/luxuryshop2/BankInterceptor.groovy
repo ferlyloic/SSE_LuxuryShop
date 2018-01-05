@@ -19,7 +19,7 @@ class BankInterceptor {
             println reader.readNext()
             while ((record = reader.readNext()) != null) {
                 println(Arrays.asList(record))
-                Bank bank = new Bank(kundenName: record[0],kreditkartennummer: record[1], saldo: Double.parseDouble(record[2]),
+                Bank bank = new Bank(kundenName: record[0],kreditkartennummer: record[1], saldo: Integer.parseInt(record[2]),
                         waehrung: Waehrung.Euro);
                 println bank
                 bankService.save(bank)

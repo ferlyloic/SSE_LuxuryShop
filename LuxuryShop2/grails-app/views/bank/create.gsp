@@ -20,7 +20,7 @@
         <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
     </ul>
 </div>
-<div id="create-produkt" class="content scaffold-create" role="main">
+<div id="create-bank" class="content scaffold-create" role="main">
     <h1><g:message code="default.create.label" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
@@ -32,7 +32,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form resource="${this.produkt}" method="POST">
+    <g:form resource="${this.bank}" method="POST">
         <fieldset class="form">
             <f:all bean="bank"/>
         </fieldset>
