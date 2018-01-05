@@ -1,5 +1,7 @@
 package luxuryshop2
 
+import com.opencsv.CSVReader
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,44 +15,26 @@ class ProduktInterceptor {
 
     boolean before() {
 
-        if(!gestartet){
-           /** produktService.save(new Produkt(produktname: "Test", preis: 10, waehrung: Waehrung.Euro, produktbeschreibung: ""))
-            println "loool "**/
-            String csvFile = "/Users/mkyong/csv/country.csv";
-            BufferedReader br = null;
-            String line = "";
-            String cvsSplitBy = ",";
+        CSVReader reader = new CSVReader(new FileReader("files/ProductList.csv"));
+    //    CSVReader reader = new CSVReader(new FileReader("/Users/jacquelinefranssen/Desktop/SSE_LuxuryShop/SSE_LuxuryShop/LuxuryShop2/grails-app/files/ProductList.csv"), ',');
 
-            try {
+        List<Produkt> produktList = new ArrayList<Produkt>();
 
-                br = new BufferedReader(new FileReader(csvFile));
-                while ((line = br.readLine()) != null) {
+        // read line by line
+        String[] record = null;
 
-                    // use comma as separator
-                    String[] country = line.split(cvsSplitBy);
-
-                    System.out.println("Country [code= " + country[4] + " , name=" + country[5] + "]");
-
-                }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (br != null) {
-                    try {
-                        br.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            gestartet= true
+        while ((record = reader.readNext()) != null) {
+            Produkt produkt = new Produkt();
+            produkt.name(record[0]);
+            produkt.preis(record[1]);
+            produkt.waehrung(Waehrung.Euro);
+            produkt.produktbeschreibung(record[3]);
+            produktList.add(produkt);
         }
 
-        true
+        System.out.println(produktList);
+
+        reader.close();
     }
 
     boolean after() { true }
