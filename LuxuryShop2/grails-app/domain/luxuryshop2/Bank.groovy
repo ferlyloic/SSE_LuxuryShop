@@ -5,11 +5,14 @@ class Bank {
     String kundenName
     Integer kreditkartennummer
     BigDecimal saldo
+    Waehrung waehrung
+
 
 
     static constraints = {
         kundenName(nullable: false, blank: false, unique: true)
         saldo(nullable: false, min: 0.01)
+        waehrung(nullable: false)
         kreditkartennummer(nullable: false, blank: false, unique: true)
     }
     static mapping = {
@@ -20,6 +23,6 @@ class Bank {
     @Override
     public String toString(){
         """$kundenName
-    $kreditkartennummer $saldo"""
+    $kreditkartennummer $saldo $waehrung:"""
     }
 }
