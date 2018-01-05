@@ -35,16 +35,16 @@ class BankController {
         try {
             bankService.save(bank)
         } catch (ValidationException e) {
-            respond produkt.errors, view:'create'
+            respond bank.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'bank.label', default: 'Bank'), produkt.id])
-                redirect produkt
+                flash.message = message(code: 'default.created.message', args: [message(code: 'bank.label', default: 'Bank'), bank.id])
+                redirect bank
             }
-            '*' { respond produkt, [status: CREATED] }
+            '*' { respond bank, [status: CREATED] }
         }
     }
 
@@ -68,9 +68,9 @@ class BankController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'bank.label', default: 'Bank'), bank.id])
-                redirect produkt
+                redirect bank
             }
-            '*'{ respond produkt, [status: OK] }
+            '*'{ respond bank, [status: OK] }
         }
     }
 
