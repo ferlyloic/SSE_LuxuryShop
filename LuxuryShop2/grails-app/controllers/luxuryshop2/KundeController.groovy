@@ -13,9 +13,10 @@ class KundeController {
         if (params.name == "kunde" && params.password == "kund"){
             flash.message = "login succeed"
             session.kunde = "kunde"
-            redirect(action: 'login')
+            redirect(action: 'index')
         }else{
             flash.message = "login failed"
+            redirect(action: 'index')
         }
 
     }

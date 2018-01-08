@@ -3,8 +3,8 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Welcome to Luxury Shop</title>
-    <style type = "text/css">
-    label{
+    <style type="text/css">
+    label {
         float: left;
         width: 65px;
     }
@@ -22,7 +22,7 @@ ${flash.message}
 <g:if test="${session.kunde}">
     <div>
         <br/>
-    Login as : ${session.kunde} Available Controllers:| <g:link action="logout">Logout</g:link>
+        Login as : ${session.kunde} Available Controllers:| <g:link action="logout">Logout</g:link>
     </div>
 </g:if>
 <g:else>
@@ -51,10 +51,9 @@ ${flash.message}
                         <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
                     </li>
                 </g:each>
-                <li class>
-                    <button>Aktionen</button><input type="submit" value="Login"/>
-                </li>
+
             </ul>
+
         </div>
 
     </section>
