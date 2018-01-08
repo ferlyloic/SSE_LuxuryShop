@@ -214,7 +214,7 @@ class ProduktControllerSpec extends Specification implements ControllerUnitTest<
         request.method = 'DELETE'
         controller.delete(2)
 
-        then:"The user is redirected to index"
+        then:"The user2 is redirected to index"
         response.redirectedUrl == '/produkt/index'
         flash.message != null
     }
