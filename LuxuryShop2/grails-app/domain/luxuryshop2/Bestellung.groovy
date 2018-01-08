@@ -18,7 +18,7 @@ class Bestellung {
        bestellungsstatus defaultValue: Bestellungsstatus.Unbezahlt
     }
     //static transients = ['gesamtpreis']
-    static belongsTo = [user: User]
+    static belongsTo = [kunde: Kunde]
 
 }
 

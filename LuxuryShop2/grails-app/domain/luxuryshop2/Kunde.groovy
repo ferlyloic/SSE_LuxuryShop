@@ -1,7 +1,6 @@
 package luxuryshop2
 
-class User {
-
+class Kunde {
     String name
     String emailAdresse
     String passwort
@@ -12,5 +11,5 @@ class User {
         passwort nullable: false
     }
 
-    //static hasMany = [Bestellung:Bestellung]
+    static hasMany = [bestellung: Bestellung]
 }

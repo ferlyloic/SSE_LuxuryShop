@@ -3,87 +3,87 @@ package luxuryshop2
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class UserController {
+class KundeController {
 
-    UserService userService
+    KundeService kundeService
+
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
     def login() {
-        if (params.username == "admin" && params.password == "admin"){
+        if (params.name == "kunde" && params.password == "kund"){
             flash.message = "login succeed"
-            session.user = "admin"
+            session.kunde = "kunde"
+            redirect(action: 'login')
         }else{
             flash.message = "login failed"
         }
-        redirect(action: 'index')
+
     }
 
 
 
     def logout() {
         session.user = null
-
         redirect(action: 'index')
     }
-
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond userService.list(params), model:[userCount: userService.count()]
+        respond kundeService.list(params), model:[kundeCount: kundeService.count()]
     }
 
     def show(Long id) {
-        respond userService.get(id)
+        respond kundeService.get(id)
     }
 
     def create() {
-        respond new User(params)
+        respond new Kunde(params)
     }
 
-    def save(User user) {
-        if (user == null) {
+    def save(Kunde kunde) {
+        if (kunde == null) {
             notFound()
             return
         }
 
         try {
-            userService.save(user)
+            kundeService.save(kunde)
         } catch (ValidationException e) {
-            respond user.errors, view:'create'
+            respond kunde.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect user
+                flash.message = message(code: 'default.created.message', args: [message(code: 'kunde.label', default: 'Kunde'), kunde.id])
+                redirect kunde
             }
-            '*' { respond user, [status: CREATED] }
+            '*' { respond kunde, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond userService.get(id)
+        respond kundeService.get(id)
     }
 
-    def update(User user) {
-        if (user == null) {
+    def update(Kunde kunde) {
+        if (kunde == null) {
             notFound()
             return
         }
 
         try {
-            userService.save(user)
+            kundeService.save(kunde)
         } catch (ValidationException e) {
-            respond user.errors, view:'edit'
+            respond kunde.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect user
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'kunde.label', default: 'Kunde'), kunde.id])
+                redirect kunde
             }
-            '*'{ respond user, [status: OK] }
+            '*'{ respond kunde, [status: OK] }
         }
     }
 
@@ -93,11 +93,11 @@ class UserController {
             return
         }
 
-        userService.delete(id)
+        kundeService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'kunde.label', default: 'Kunde'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -107,7 +107,7 @@ class UserController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'kunde.label', default: 'Kunde'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

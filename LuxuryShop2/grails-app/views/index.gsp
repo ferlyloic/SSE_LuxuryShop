@@ -19,16 +19,16 @@
 </g:if>
 
 ${flash.message}
-<g:if test="${session.user}">
+<g:if test="${session.kunde}">
     <div>
         <br/>
-    Login as : ${session.user} Available Controllers:| <g:link action="logout">Logout</g:link>
+    Login as : ${session.kunde} Available Controllers:| <g:link action="logout">Logout</g:link>
     </div>
 </g:if>
 <g:else>
-    <g:form controller="user" action="login" style="padding-left:220px">
+    <g:form controller="kunde" action="login" style="padding-left:220px">
         <div style="width:220px">
-            <label>Name:</label><input type="text" name="username"/>
+            <label>Name:</label><input type="text" name="kundenname"/>
             <label>Password:</label><input type="password" name="password"/>
             <label>&nbsp;</label><input type="submit" value="Login"/>
         </div>
