@@ -7,6 +7,7 @@ class GlobalInterceptor {
     ProduktService produktService
     BankService bankService
     KundeService kundeService
+    AdminService adminService
     public GlobalInterceptor() {
         match controllerNamespace: 'luxuryshop2'
         //   match controller: 'KundeController'
@@ -18,9 +19,15 @@ class GlobalInterceptor {
             initProdukte()
             initKunden()
             initBank()
+            initAdmin()
             isInitialisiert = true
         }
         true
+    }
+
+    void initAdmin() {
+        Admin admin = new Admin(name: 'admin', passwort: 'admin')
+        adminService.save(admin)
     }
 
     void initProdukte() {

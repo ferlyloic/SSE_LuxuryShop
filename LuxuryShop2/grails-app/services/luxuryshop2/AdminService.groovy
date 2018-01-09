@@ -12,5 +12,5 @@ interface AdminService {
     Long count()
 
     void delete(Serializable id)
-
+    Admin save(Admin admin)
 }

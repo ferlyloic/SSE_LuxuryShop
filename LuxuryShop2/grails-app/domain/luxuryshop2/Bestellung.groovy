@@ -20,5 +20,9 @@ class Bestellung {
     //static transients = ['gesamtpreis']
     static belongsTo = [kunde: Kunde]
 
+    @Override
+    String toString() {
+        "$produkt $menge Status: $bestellungsstatus"
+    }
 }
 
