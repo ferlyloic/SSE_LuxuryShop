@@ -4,7 +4,9 @@ import com.opencsv.CSVReader
 
 
 class GlobalInterceptor {
-
+    ProduktService produktService
+    BankService bankService
+    KundeService kundeService
     public GlobalInterceptor() {
         match controllerNamespace: 'luxuryshop2'
         //   match controller: 'KundeController'
@@ -22,7 +24,7 @@ class GlobalInterceptor {
     }
 
     void initProdukte() {
-        ProduktService produktService
+
         CSVReader reader = new CSVReader(new FileReader("grails-app/files/ProductList.csv"));
         // read line by line
         String[] record = null;
@@ -37,14 +39,13 @@ class GlobalInterceptor {
         reader.close()
     }
     void initBank() {
-        BankService bankService
         CSVReader reader = new CSVReader(new FileReader("grails-app/files/Bank.csv"));
         // read line by line
         String[] record = null;
         println reader.readNext()
         while ((record = reader.readNext()) != null) {
             println(Arrays.asList(record))
-            Bank bank = new Bank(kundenName: record[0],kreditkartennummer: Integer.parseInt(record[1]), saldo: Double.parseDouble(record[2]),
+            Bank bank = new Bank(kundenName: record[0],kreditkartennummer: record[1], saldo: Double.parseDouble(record[2]),
                     waehrung: Waehrung.Euro);
             println bank
             bankService.save(bank)
@@ -53,7 +54,7 @@ class GlobalInterceptor {
         reader.close();
     }
     void initKunden() {
-        KundeService kundeService
+
         CSVReader reader = new CSVReader(new FileReader("grails-app/files/Kunde.csv"));
         // read line by line
         String[] record = null;

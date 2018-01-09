@@ -15,6 +15,7 @@ class ProduktInterceptor {
 
     boolean before() {
         println(gestartet)
+
         return true
     }
 

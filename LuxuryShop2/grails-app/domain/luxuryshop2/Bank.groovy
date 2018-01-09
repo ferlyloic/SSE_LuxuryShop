@@ -3,7 +3,7 @@ package luxuryshop2
 class Bank {
 
     String kundenName
-    Integer kreditkartennummer
+    String kreditkartennummer
     BigDecimal saldo
     Waehrung waehrung
 
