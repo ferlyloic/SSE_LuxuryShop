@@ -16,7 +16,7 @@ class KundeController {
             redirect(action: 'index')
         }else{
             flash.message = "login failed"
-            redirect(action: 'index')
+            redirect(controller: this.controllerName, action: 'login')
         }
 
     }
