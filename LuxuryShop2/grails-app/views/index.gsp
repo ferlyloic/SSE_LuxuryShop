@@ -26,7 +26,7 @@ ${flash.message}
     </div>
 </g:if>
 <g:else>
-    <g:form controller="kunde" action="login" style="padding-left:220px">
+    <g:form controller="login" action="login" style="padding-left:220px">
         <div style="width:220px">
             <label>Name:</label><input type="text" name="kundenname"/>
             <label>Password:</label><input type="password" name="password"/>
