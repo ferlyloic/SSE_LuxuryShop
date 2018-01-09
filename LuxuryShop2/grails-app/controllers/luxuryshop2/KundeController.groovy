@@ -9,30 +9,13 @@ class KundeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def login() {
-        if (params.name == "kunde" && params.password == "kunde"){
-            flash.message = "login succeed"
-            session.kunde = "kunde"
-            redirect(action: 'index')
-        }else{
-            flash.message = "login failed"
-            redirect(controller: this.controllerName, action: 'login')
-        }
-
-    }
-
-
-
-    def logout() {
-        session.user = null
-        redirect(action: 'index')
-    }
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond kundeService.list(params), model:[kundeCount: kundeService.count()]
     }
 
     def show(Long id) {
+        println(session.role)
         respond kundeService.get(id)
     }
 

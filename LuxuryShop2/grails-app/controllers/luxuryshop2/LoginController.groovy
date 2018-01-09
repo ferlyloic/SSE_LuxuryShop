@@ -8,45 +8,67 @@ class LoginController {
     KundeService kundeService
     AdminService adminService
     def index() {
-        render("login")
-
+        redirect(action: "login")
     }
 
     def login(){
-        Kunde ku
-        ArrayList<Kunde> kunden = kundeService.list()
-       for(Kunde k: kunden){
-           if(params.kundenname == k.name && params.password == k.passwort){
-               ku = k
-               break
-           }
-       }
-        if(ku != null){
-            println(ku)
-            flash.message = "login succeed"
-            Long l = kunden.indexOf(ku)+1
-            println(l)
-            redirect(controller: "kunde", action: "show", id: l)
-        } else {
-            Admin ad
-            ArrayList<Admin> admins = adminService.list()
-            for(Admin a: admins){
-                if(params.kundenname == a.name && params.password == a.passwort){
-                    ad = a
-                    break
-                }
-            }
-            if(ad != null){
-                println(ad)
-                flash.message = "login succeed"
-                Long l = admins.indexOf(ad)+1
-                println(l)
-                redirect(controller: "admin", action: "show", id: l)
-            } else {
-                println("login failed")
-                flash.message = "login failed"
-                render("User name or password false try again !!!")
+       if(session.idx) {
+            if(session.role == Admin.getSimpleName()){
+                redirect(controller: "kunde", action: "index")
+            }else {
+                redirect(controller: "kunde", action: "edit", id: session.idx)
             }
         }
+
+        if(params.containsKey("kundenname") && params.containsKey("password")){
+            Kunde ku
+            ArrayList<Kunde> kunden = kundeService.list()
+               for(Kunde k: kunden){
+                   if(params.kundenname == k.name && params.password == k.passwort){
+                       ku = k
+                       break
+                   }
+               }
+            if(ku != null){
+                println(ku)
+                flash.message = "login succeed"
+                Long idx = ku.getId()
+                println(ku)
+                session.idx = idx
+                session.role = Kunde.getSimpleName()
+                redirect(controller: "kunde", action: "show", id: idx)
+            } else {
+                Admin ad
+                ArrayList<Admin> admins = adminService.list()
+                for(Admin a: admins){
+                    if(params.kundenname == a.name && params.password == a.passwort){
+                        ad = a
+                        break
+                    }
+                }
+                if(ad != null){
+                    println(ad)
+                    flash.message = "login succeed"
+                    Long idx = ad.getId()
+                    session.idx = idx
+                    session.role = Admin.getSimpleName()
+                    redirect(controller: "admin", action: "show", id: idx)
+                } else {
+                    println("login failed")
+                    flash.message = "login failed"
+                    //render("User name or password false try again !!!")
+                    redirect(action: "login")
+                }
+            }
+        }
+    }
+    def logout(){
+        session.invalidate()
+        flash.message = "logout successful"
+        redirect( action: "login")
+    }
+
+    def error() {
+
     }
 }

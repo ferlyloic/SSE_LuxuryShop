@@ -31,10 +31,32 @@
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
                     <g:pageProperty name="page.nav" />
+                    <g:if test="${session.role}">
+                        <li><g:link controller="login" action="logout">Logout</g:link></li>
+                    </g:if>
                 </ul>
             </div>
         </div>
     </div>
+<g:if test="${session.role== "Kunde"}">
+<div class="nav" role="navigation">
+    <ul>
+        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+        <li><g:link class="create" controller="kunde" action="order">Bestellung  machen</g:link></li>
+    </ul>
+</div>
+</g:if>
+<g:if test="${session.role== "Admin"}">
+    <div class="nav" role="navigation">
+        <ul>
+            <li><g:link class="home" controller="admin" action="dashboard">Home</g:link></li>
+            <li><g:link class="list" controller="admin" action="index">Adminverwaltung</g:link></li>
+            <li><g:link class="list" controller="admin" action="kundenverwaltung">Kundenverwaltung</g:link></li>
+            <li><g:link class="list" controller="admin" action="bestellungsverwalung">Bestellungsverwaltung</g:link></li>
+            <li><g:link class="list" controller="admin" action="produktverwaltung">Produktverwaltung</g:link></li>
+        </ul>
+    </div>
+</g:if>
 
     <g:layoutBody/>
 

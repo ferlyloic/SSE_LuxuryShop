@@ -11,5 +11,5 @@ class Kunde {
         passwort nullable: false ,passwort: true
     }
 
-    static hasMany = [bestellung: Bestellung]
+    static hasMany = [bestellungen: Bestellung]
 }
