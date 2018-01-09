@@ -21,8 +21,6 @@
                 </li>
             </g:each>
         </ul>
-        <li><g:link class="delete" action="delete"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
     </ul>
 </div>
 
