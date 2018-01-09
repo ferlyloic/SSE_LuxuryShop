@@ -19,9 +19,6 @@
             <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
                 <li class="controller">
                <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-              <!--  <g:if test="${c.fullName?.luxuryshop2.BankController}">
-                    <g:link controller="${c.logicalPropertyName}">Meine Bank</g:link>
-                </g:if>-->
                 </li>
             </g:each>
         </ul>
