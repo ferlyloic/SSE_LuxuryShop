@@ -10,7 +10,7 @@ class KundeController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def login() {
-        if (params.name == "kunde" && params.password == "kund"){
+        if (params.name == "kunde" && params.password == "kunde"){
             flash.message = "login succeed"
             session.kunde = "kunde"
             redirect(action: 'index')
