@@ -2,7 +2,7 @@ package luxuryshop2
 
 class Bank {
 
-    String kundenName
+//    String kundenName
     String kreditkartennummer
     BigDecimal saldo
     Waehrung waehrung
@@ -10,7 +10,7 @@ class Bank {
 
 
     static constraints = {
-        kundenName(nullable: false, blank: false, unique: true)
+//        kundenName(nullable: false, blank: false, unique: true)
         saldo(nullable: false, min: 0.01)
         waehrung(nullable: false)
         kreditkartennummer(nullable: false, blank: false, unique: true)
@@ -22,7 +22,6 @@ class Bank {
     }
     @Override
     public String toString(){
-        """$kundenName
-    $kreditkartennummer $saldo $waehrung:"""
+        """$kreditkartennummer $saldo $waehrung:"""
     }
 }

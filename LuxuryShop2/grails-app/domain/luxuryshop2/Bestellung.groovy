@@ -2,9 +2,9 @@ package luxuryshop2
 
 class Bestellung {
     Integer menge
-    //BigDecimal getGesamtpreis(){
-    //    produkt.getPreis()* menge
-    //}
+    BigDecimal getGesamtpreis(){
+       produkt.getPreis()* menge
+    }
     Bestellungsstatus bestellungsstatus
     Produkt produkt
 
@@ -12,7 +12,8 @@ class Bestellung {
         produkt(nullable: false)
         menge(nullable: false, min: 1)
         bestellungsstatus display: false
-        //gesamtpreis display: true
+        kunde display: false
+        gesamtpreis display: true
     }
     static mapping = {
        bestellungsstatus defaultValue: Bestellungsstatus.Unbezahlt
