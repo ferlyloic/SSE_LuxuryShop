@@ -13,6 +13,13 @@ class KundeController {
         params.max = Math.min(max ?: 10, 100)
         respond kundeService.list(params), model:[kundeCount: kundeService.count()]
     }
+    def order(){
+//        render("hier ist was !!")
+        redirect(controller: "bestellung", action: "showForKunde")
+    }
+    def newOrder(){
+        redirect(controller: "bestellung", action: "create")
+    }
 
     def show(Long id) {
         println(session.role)

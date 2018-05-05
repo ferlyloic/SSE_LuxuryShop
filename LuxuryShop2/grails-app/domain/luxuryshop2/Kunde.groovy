@@ -6,10 +6,15 @@ class Kunde {
     String passwort
 
     static constraints = {
-        name nullable: false, blank: false
+        name nullable: false, blank: false, unique: true
         emailAdresse nullable: false
         passwort nullable: false ,passwort: true
     }
 
     static hasMany = [bestellungen: Bestellung]
+
+    @Override
+    String toString() {
+        """$name $emailAdresse"""
+    }
 }

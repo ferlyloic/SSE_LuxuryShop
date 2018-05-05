@@ -12,7 +12,7 @@ class Bestellung {
         produkt(nullable: false)
         menge(nullable: false, min: 1)
         bestellungsstatus display: false
-        kunde display: false
+        //kunde display: false
         gesamtpreis display: true
     }
     static mapping = {

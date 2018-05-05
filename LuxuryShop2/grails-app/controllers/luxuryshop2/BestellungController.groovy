@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.*
 class BestellungController {
 
     BestellungService bestellungService
+    KundeService kundeService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -13,13 +14,21 @@ class BestellungController {
         params.max = Math.min(max ?: 10, 100)
         respond bestellungService.list(params), model:[bestellungCount: bestellungService.count()]
     }
-
+    def showForKunde() {
+        def max
+        params.max = Math.min(max ?: 10, 100)
+        respond bestellungService.list(params).each {it.getKunde().getId() == session.idx}, model:[bestellungCount: bestellungService.count()]
+    }
     def show(Long id) {
         respond bestellungService.get(id)
     }
 
     def create() {
         println(params)
+        respond new Bestellung(params)
+    }
+    def createForKunde() {
+        params.kunde = kundeService.get(session.idx)
         respond new Bestellung(params)
     }
 

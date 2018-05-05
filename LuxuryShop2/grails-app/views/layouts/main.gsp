@@ -42,7 +42,9 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="create" controller="kunde" action="order">Bestellung  machen</g:link></li>
+        <li><g:link class="create" controller="kunde" action="order">Bestellung ansehen</g:link></li>
+        <li><g:link class="create" controller="kunde" action="newOrder">Bestellung machen</g:link></li>
+        <li><g:link class="create" controller="kunde" action="payOrder">Bestellung bezahlen</g:link></li>
     </ul>
 </div>
 </g:if>

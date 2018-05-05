@@ -24,6 +24,18 @@ class AdminController {
         }
 
     }
+    def dashboard(){
+        redirect(action: "index")
+    }
+    def bestellungsverwalung(){
+        redirect(controller: "bestellung", action: "index")
+    }
+    def kundenverwaltung(){
+        redirect(controller: "kunde", action: "index")
+    }
+    def produktverwaltung(){
+        redirect(controller: "produkt", action: "index")
+    }
 
 
     def logout() {
@@ -42,20 +54,23 @@ class AdminController {
 
 
     def delete(Long id) {
-        if (id == null) {
-            notFound()
-            return
-        }
 
-        adminService.delete(id)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'admin.label', default: 'Admin'), id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        flash.message = "Du kannst das Admin nicht löschen !!!!"
+        redirect(action: "index")
+//        if (id == null) {
+//            notFound()
+//            return
+//        }
+//
+//        adminService.delete(id)
+//
+//        request.withFormat {
+//            form multipartForm {
+//                flash.message = message(code: 'default.deleted.message', args: [message(code: 'admin.label', default: 'Admin'), id])
+//                redirect action:"index", method:"GET"
+//            }
+//            '*'{ render status: NO_CONTENT }
+//        }
     }
 
     protected void notFound() {
